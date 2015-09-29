@@ -6,22 +6,25 @@
   .config(notesConfig);
 
   notesConfig['$inject'] = ['$stateProvider'];
+
   function notesConfig($stateProvider) {
     $stateProvider
 
       .state('notes', {
         url: '/notes',
+        abstract: true,
         templateUrl: '/notes/notes.html',
         controller: NotesController
       })
 
-      .state('notes.form', {
-        url: '/:noteId',
+      .state('notes.form', {     //child state
+        url: '/{noteId}',
         templateUrl: '/notes/notes-form.html'
       });
   }
 
   NotesController['$inject'] = ['$scope', '$state', 'notes'];
+
   function NotesController($scope, $state, notesService) {
     notesService.fetchNotes(function(notes) {
       $scope.notes = notes;

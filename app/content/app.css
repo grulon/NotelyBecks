@@ -58,7 +58,6 @@ ul#notes {
   color: #999; }
   ul#notes li {
     border-top: 1px solid #ddd;
-    padding: 1em;
     height: 100px;
     font-size: 90%;
     cursor: pointer;
@@ -78,6 +77,13 @@ ul#notes {
     ul#notes li .note-body {
       height: 54px;
       overflow: hidden; }
+    ul#notes li a.note {
+      display: block;
+      height: 100px;
+      padding: 1em;
+      text-decoration: none; }
+    ul#notes li a.note:hover {
+      color: white; }
 
 #new_user input[type="text"],
 #new_user input[type="password"] {
