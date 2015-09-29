@@ -1,6 +1,7 @@
 (function() {
   angular.module('notely.notes', [
-    'ui.router'
+    'ui.router',
+    'textAngular'
   ])
   .controller('NotesController', NotesController)
   .controller('NotesFormController', NotesFormController)
