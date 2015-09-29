@@ -6,7 +6,7 @@
   ]);
 
   function config($urlRouterProvider) {
-    $urlRouterProvider.otherwise('/notes');
+    $urlRouterProvider.otherwise('/notes/');
   }
 
   config['$inject'] = ['$urlRouterProvider'];

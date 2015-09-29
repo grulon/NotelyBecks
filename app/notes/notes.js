@@ -29,6 +29,6 @@
     notesService.fetchNotes(function(notes) {
       $scope.notes = notes;
     });
-    $state.go('notes.form');
+    //$state.go('notes.form');  Don't need this to redirect since set abstract = true and added / to app.js urlRouterProvider
   }
 })();
