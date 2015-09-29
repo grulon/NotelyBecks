@@ -10,14 +10,10 @@
       apiKey: '$2a$10$M9YKAJ/y08ztCrFV89dR2uwesxwl6RpFQ9V2zJkOJfCcJDHmCaz7O'
     }
 
-    this.fetchNotes = function(callback) {
-      $http.get(nevernoteBasePath + 'notes?api_key=' + user.apiKey)
+    this.fetchNotes = function() {
+      return $http.get(nevernoteBasePath + 'notes?api_key=' + user.apiKey)
         .success(function(notesData) {
           notes = notesData;
-
-          if (callback) {
-            callback(notes);
-          }
         });
     };
 
@@ -31,6 +27,14 @@
       }
     };
 
+    this.removeNote = function(note) {
+      for (var i = 0; i < notes.length; i++) {
+        if(notes[i].id === note.id) {
+          notes.splice(i,1);
+          break;
+        }
+      }
+    };
 //     this.create = function(note){
 //       if(note.id) {
 //         $http.put(nevernoteBasePath + 'notes/' + note.id, {
@@ -78,9 +82,22 @@
        });
      }
 
+     this.delete = function(note) {
+       var self = this;
+       return $http.delete(nevernoteBasePath + 'notes/' + note.id +'?api_key=' + user.apiKey)
+       .success(function(result){
+          self.removeNote(note);
+       });
+     }
+
   this.findById = function(noteId) {
       return note = ($filter('filter')(notes,{ id: parseInt(noteId) }, true)[0] || {});
 
   }
+
+  this.all = function() {
+    return notes;
+  }
+
 }
 })();

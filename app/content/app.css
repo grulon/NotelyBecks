@@ -33,7 +33,8 @@ i.fa-trash-o {
   color: #ccc;
   font-size: 150%;
   vertical-align: middle;
-  margin-left: 1em; }
+  margin-left: 1em;
+  cursor: pointer;}
   i.fa-trash-o:hover {
     color: #999; }
 

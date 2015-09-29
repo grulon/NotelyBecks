@@ -14,6 +14,11 @@
       .state('notes', {
         url: '/notes',
         abstract: true,
+        resolve: {
+          notePromise: function(notes){
+            return notes.fetchNotes();
+          }
+        },
         templateUrl: '/notes/notes.html',
         controller: NotesController
       })
@@ -28,16 +33,14 @@
   NotesController['$inject'] = ['$scope', '$state', 'notes'];
 
   function NotesController($scope, $state, notes) {
-    notes.fetchNotes(function(notes) {
-      $scope.notes = notes;
-    });
-    //$state.go('notes.form');  Don't need this to redirect since set abstract = true and added / to app.js urlRouterProvider
+    $scope.notes = notes.all();
   }
 
     NotesFormController['$inject'] = ['$scope', '$state', 'notes'];
 
     function NotesFormController($scope, $state, notes) {
       $scope.note = angular.copy(notes.findById($state.params.noteId));
+      //$scope.$broadcast('noteLoaded');
       $scope.buttonText = function() {
         if ($scope.note.id) {
           return 'Save';
@@ -55,6 +58,12 @@
       else {
         notes.create($scope.note);
       }
+    }
+    $scope.delete = function() {
+      notes.delete($scope.note)
+      .success(function() {
+        $state.go('notes.form', { noteId: undefined });
+      });
     }
   }
 })();
