@@ -5,7 +5,7 @@
   CurrentUser['$inject'] = ['$window'];
   function CurrentUser($window) {
     var currentUser = JSON.parse($window.localStorage.getItem('currentUser'));
-  
+
 
     this.set = function(token) {
       currentUser = token;
@@ -13,7 +13,7 @@
     }
 
     this.get = function() {
-      return currentUser;
+      return currentUser || {};
     }
 
     this.clear = function() {
@@ -21,7 +21,4 @@
       $window.localStorage.removeItem('currentUser');
     }
   }
-
-
-
 })();
