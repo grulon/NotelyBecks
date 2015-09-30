@@ -1,14 +1,11 @@
-(function(){
-  angular.module('notely')
-    .directive(
-      'bdFocusOn',
-      function(){
-        return {
-            link: function(scope, elem, attr) {
-          scope.$on(attr.bdFocusOn, function(e) {
-            elem[0].focus();
-          });
-        }
-      };
-    });
-})();
+angular.module('notely')
+  .directive('bdFocus',function() {
+    return {
+      restrict: 'A',
+      link: function(scope, elem, attr) {
+        elem.ready(function(){
+          elem[0].focus();
+        });
+      }
+    };
+  });
