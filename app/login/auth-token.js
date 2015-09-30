@@ -20,4 +20,7 @@
       $window.localStorage.removeItem('authToken');
     }
   }
+
+
+
 })();

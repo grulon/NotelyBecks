@@ -16,14 +16,11 @@ angular.module('notely')
       controllerAs: 'ctrl'
     };
 
-    userLinksController['$inject'] = ['$state', 'login'];
-    function userLinksController($state, login){
+    userLinksController['$inject'] = ['$state', 'login', 'CurrentUser'];
+    function userLinksController($state, login, CurrentUser){
       this.really = 'Yes, really.';
       this.user = function() {
-        return {
-          id: 1,
-          name: 'User Person'
-        };
+        return CurrentUser.getUser;
       }
       this.logout = function() {
         login.logout();
