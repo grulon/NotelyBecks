@@ -1,12 +1,13 @@
-(function(){
+(function() {
   angular.module('notely.login', [
     'ui.router'
   ])
-    .config(loginConfig);
+  .config(loginConfig);
 
   loginConfig['$inject'] = ['$stateProvider'];
   function loginConfig($stateProvider) {
     $stateProvider
+
       .state('login', {
         url: '/login',
         templateUrl: 'login/login.html',
@@ -14,10 +15,13 @@
       });
   }
 
-  LoginController['$inject'] = ['$scope', '$state'];
-  function LoginController($scope, $state) {
-    $scope.login=function(){
-      $state.go('notes.form');
+  LoginController['$inject'] = ['$scope', '$state', 'login'];
+  function LoginController($scope, $state, login) {
+    $scope.user = {};
+    $scope.login = function() {
+      login.login($scope.user).success(function() {
+        $state.go('notes.form');
+      });
     }
   }
 })();
