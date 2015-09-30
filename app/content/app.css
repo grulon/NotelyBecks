@@ -25,6 +25,8 @@ header .well {
   header .well .user-links {
     float: right;
     color: #ccc; }
+    header .well .user-links a {
+      cursor: pointer; }
 
 a:link, a:visited, a:hover, a:active {
   color: #FE5F55; }
@@ -33,8 +35,7 @@ i.fa-trash-o {
   color: #ccc;
   font-size: 150%;
   vertical-align: middle;
-  margin-left: 1em;
-  cursor: pointer;}
+  margin-left: 1em; }
   i.fa-trash-o:hover {
     color: #999; }
 

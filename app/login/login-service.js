@@ -17,5 +17,9 @@
         AuthToken.set(response.auth_token);
       });
     }
+
+    this.logout = function() {
+      AuthToken.clear();
+    }
   }
 })();
