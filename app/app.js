@@ -2,7 +2,8 @@
   var app = angular.module('notely', [
     'ui.router',
     'notely.notes',
-    'notely.notes.service'
+    'notely.notes.service',
+    'notely.login'
   ]);
 
   function config($urlRouterProvider) {
